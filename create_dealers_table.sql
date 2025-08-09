@@ -1,0 +1,20 @@
+CREATE TABLE dealers (
+    dealer_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    business_name VARCHAR(255) NOT NULL,
+    business_type VARCHAR(100),
+    business_address TEXT,
+    business_phone VARCHAR(20),
+    business_email VARCHAR(255),
+    tax_id VARCHAR(50),
+    license_number VARCHAR(100),
+    status ENUM('pending', 'active', 'suspended') DEFAULT 'pending',
+    commission_rate DECIMAL(5,2) DEFAULT 10.00,
+    total_sales DECIMAL(10,2) DEFAULT 0.00,
+    rating DECIMAL(3,2) DEFAULT 0.00,
+    total_reviews INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_user_dealer (user_id)
+);
